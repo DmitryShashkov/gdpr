@@ -1,0 +1,50 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+    backface-visibility: hidden;
+}
+
+html {
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: 'ProximaNova', sans-serif;
+    color: #000;
+    font-size: 15px;
+    padding-right: 0!important; /* against bootstrap modals */
+}
+
+img {
+    width: 100%;
+}
+
+button {
+    border: none;
+    outline: none;
+}
+
+strong {
+    font-weight: bold;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+
+    &:hover, &:focus {
+        text-decoration: none;
+    }
+}
+
+.modal-dialog {
+    margin: 0;
+    height: 100%;
+    max-width: 100%;
+    pointer-events: all;
+}
+.modal-content {
+    height: 100%;
+    border: 0;
+}

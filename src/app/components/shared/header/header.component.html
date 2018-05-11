@@ -1,0 +1,44 @@
+<!--suppress HtmlUnknownTarget -->
+<div class="main-menu-holder">
+    <div class="main-menu transparent" #mainMenu>
+        <div class="inner-container">
+            <div class="permanent-content">
+                <div class="logo-holder">
+                    <a href="/">
+                        <img class="logo-image" src="/assets/images/logo.svg" alt="Logo">
+                    </a>
+                </div>
+                <div class="menu-switcher hamburger" (click)="toggleMenu()" #toggleButton>
+                    <div class="hamburger-box">
+                        <div class="hamburger-inner"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="collapse-content">
+                <div class="links-holder">
+                    <div class="link animated hover-effect">
+                        <a href="/portfolio">PORTFOLIO</a>
+                    </div>
+                    <div class="link animated hover-effect">
+                        <a href="/blog">BLOG</a>
+                    </div>
+                    <div class="link animated hover-effect">
+                        <a href="/services">SERVICES</a>
+                    </div>
+                    <div class="link animated hover-effect">
+                        <a href="/testimonials">TESTIMONIALS</a>
+                    </div>
+                    <div class="link animated hover-effect">
+                        <a href="/company">ABOUT US</a>
+                    </div>
+                    <div class="link animated hover-effect">
+                        <a href="/contact">CONTACTS</a>
+                    </div>
+                    <button class="get-quote animated rise-on-hover" (click)="openModal()">
+                        FREE QUOTE
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,90 @@
+<div class="contact-us-modal"
+     id="contact-us-modal" role="dialog" data-backdrop="false">
+    <div class="modal-dialog">
+        <div [ngClass]="{'hide-content': !isContentShow}" class="modal-content-container">
+            <div class="title">TELL US MORE ABOUT PROJECT</div>
+            <div class="container">
+                <div class="column">
+                    <input
+                        [ngClass]="{'input-error': errors.name}"
+                        type="text" name="name"
+                        id="name" placeholder="Your name"
+                        class="contact-input" required
+                        [(ngModel)]="inputs.name">
+                    <input
+                        [ngClass]="{'input-error': errors.email}"
+                        type="text" name="email"
+                        id="email" placeholder="Your email"
+                        class="contact-input" required
+                        [(ngModel)]="inputs.email">
+                    <textarea
+                        [ngClass]="{'input-error': errors.projectDetails}"
+                        class="contact-input text-area"
+                        rows="4" name="message" id="message"
+                        placeholder="{{placeholder}}" required
+                        [(ngModel)]="inputs.projectDetails"></textarea>
+                    <button type="button" (click)="submitForm()" class="contact-submit" id="contact-submit">
+                        SEND MESSAGE
+                    </button>
+
+                </div>
+
+                <div class="column details">
+                    <div class="entry">
+                        <strong>Free Business Analysis</strong> & Consulting
+                    </div>
+                    <div class="entry">
+                        <strong>We sign NDA!</strong> 100% Confidentiality
+                    </div>
+                    <div class="entry">
+                        You have the project <strong>started in 2 days</strong>
+                    </div>
+                    <div class="entry">
+                        Free Dedicated <strong>Project Management</strong>
+                    </div>
+                    <div class="entry">
+                        Our design is worth trying
+                        <a class="dribbble-link" href="https://dribbble.com/cleveroad" target="_blank"></a>
+                    </div>
+                    <div class="entry">
+                        Proved Client Reviews
+                        <i class="fa fa-star first" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                    </div>
+                    <div class="badges">
+                        <a href="https://clutch.co/profile/cleveroad" target="_blank">
+                            <img class="achievement-img" src="/assets/images/clutch-app.png">
+                        </a>
+                        <a href="https://clutch.co/profile/cleveroad" target="_blank">
+                            <img class="achievement-img" src="/assets/images/clutch-web.png">
+                        </a>
+                        <a href="https://www.goodfirms.co/companies/view/198/cleveroad" target="_blank">
+                            <img class="achievement-img" src="/assets/images/goodfirms.png">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="particles-container" class="particles-container"></div>
+        <div [ngClass]="{'show-cube': isAnimatedCube}" class="vertical-centered-box sk-cube-grid">
+            <div class="content">
+                <div class="loader-circle"></div>
+                <div class="loader-line-mask">
+                    <div class="loader-line"></div>
+                </div>
+                <img class="logo-icon" src="/assets/images/icons/logo_svg.svg" alt="logo">
+            </div>
+        </div>
+
+        <div [ngClass]="{'show-message': isMessageShow}" class="thanks-container">
+            <span class="thanks-text">Thank you! Your request is being processed. Check inbox to get useful clients guide.</span>
+        </div>
+
+        <div class="close-modal">
+            <i class="fa fa-close" (click)="bsModalRef.hide()"></i>
+        </div>
+    </div>
+</div>
