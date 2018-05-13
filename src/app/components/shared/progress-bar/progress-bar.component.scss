@@ -1,0 +1,8 @@
+.bar-container {
+    width: 100%;
+    background-color: #fafafa;
+
+    .bar-line {
+        transition: width 0.3s;
+    }
+}

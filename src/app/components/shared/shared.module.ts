@@ -3,6 +3,8 @@ import {CommonModule} from "@angular/common";
 import {HeaderComponent} from "./header/header.component";
 import {QuoteModalComponent} from "./quote-modal/quote-modal.component";
 import {FormsModule} from "@angular/forms";
+import {ProgressBarComponent} from "./progress-bar/progress-bar.component";
+import {LoadingComponent} from "./loading/loading.component";
 
 @NgModule({
     imports: [
@@ -11,13 +13,17 @@ import {FormsModule} from "@angular/forms";
     ],
     declarations: [
         HeaderComponent,
-        QuoteModalComponent
+        QuoteModalComponent,
+        ProgressBarComponent,
+        LoadingComponent
     ],
     exports: [
-        HeaderComponent
+        HeaderComponent,
+        ProgressBarComponent
     ],
     entryComponents: [
-        QuoteModalComponent
+        QuoteModalComponent,
+        LoadingComponent
     ]
 })
 export class SharedModule {}

@@ -1,0 +1,35 @@
+<div class="display-gdpr">
+    <div class="block-title">
+        <div class="icon">
+            <i class="fa fa-check-square-o" aria-hidden="true"></i>
+        </div>
+        <div class="texts">
+            <div class="main-text">GDPR</div>
+            <div class="additional-text">index</div>
+        </div>
+    </div>
+
+    <div class="index-holder">
+        <span [@indexAnimation]="indexState" *ngIf="stateToggle" class="inserted">
+            {{ gdprIndex }}/{{ questionsCount }}
+        </span>
+        <span [@indexAnimation]="indexState" *ngIf="!stateToggle" class="inserted">
+            {{ gdprIndex }}/{{ questionsCount }}
+        </span>
+    </div>
+
+    <div class="features-counts">
+        <div class="implemented">
+            <div class="section-label">
+                Implemented Features
+            </div>
+            <div class="counter">{{ implementedFeaturesCount }}</div>
+        </div>
+        <div class="not-implemented">
+            <div class="section-label">
+                Not Implemented Features
+            </div>
+            <div class="counter">{{ notImplementedFeaturesCount }}</div>
+        </div>
+    </div>
+</div>

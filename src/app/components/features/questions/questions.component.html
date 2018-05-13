@@ -1,0 +1,49 @@
+<div class="questions">
+    <div class="question-container">
+        <div class="controls-panel">
+            <button class="back-button"
+                (click)="goBack()">
+                Back
+            </button>
+            <div class="table-of-contents" dropdown>
+                <button id="button-basic" dropdownToggle mat-ripple
+                    aria-controls="dropdown-basic" class="dd-toggle-button">
+                    <span class="accented">Step {{ currentQuestionIndex + 1 }}</span>
+                    <span class="faded">of {{ questions?.length }}</span>
+                </button>
+                <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" aria-labelledby="button-basic">
+                    <li class="dd-list-item" role="menuitem" *ngFor="let question of questions; let i = index"
+                        [class.inactive]="i > currentQuestionIndex" (click)="goToQuestion(i)">
+                        <span class="number">{{ i + 1 }}</span> {{ question.text }}
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="question-panel">
+            <div class="question-text" animated-content
+                [animateAppearanceClass]="'fadeInDown'"
+                [content]="questions[currentQuestionIndex]?.text">
+            </div>
+            <div class="hint">
+                <span class="hint-line">I don't know.</span>
+                <span class="hint-line">
+                    I need a <a class="j-link">FREE help of business analyst</a>
+                </span>
+            </div>
+        </div>
+        <div class="answer-options-panel">
+            <button *ngFor="let answerOption of questions[currentQuestionIndex]?.answers"
+                (click)="answerCurrentQuestion(answerOption)"
+                class="answer-button" mat-ripple>
+                {{ answerOption }}
+            </button>
+        </div>
+        <div class="progress-bar-container">
+            <progress-bar [progress]="(currentQuestionIndex + 1) / questions?.length"
+                [styleColors]="['#89d2ff', '#1875f0']"></progress-bar>
+        </div>
+    </div>
+    <div class="stats-container">
+        <display-gdpr [userAnswers]="answers" [questionsCount]="questions?.length"></display-gdpr>
+    </div>
+</div>

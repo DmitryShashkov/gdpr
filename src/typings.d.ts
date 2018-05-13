@@ -1,5 +1,8 @@
 /* SystemJS module definition */
-declare var module: NodeModule;
+declare let module: NodeModule;
+
 interface NodeModule {
-  id: string;
+    id: string;
 }
+
+declare let particlesJS: Function;
