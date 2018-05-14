@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {StorageService} from "../../../services/storage.service";
 import {PlatformType, Question} from "../../../app.types";
-import {UserAnswersContract} from "../../../contracts/user-answers.contract";
+import {StorageContract} from "../../../contracts/storage.contract";
 import {PLATFORM_TYPES} from "../../../app.constants";
 import {QuestionsService} from "../../../services/questions.service";
 import {Router} from "@angular/router";
@@ -18,7 +18,7 @@ export class QuestionsComponent implements OnInit {
 
     public currentQuestionIndex: number;
 
-    private answers: string[];
+    public answers: string[];
 
     constructor (
         private router: Router,
@@ -29,14 +29,14 @@ export class QuestionsComponent implements OnInit {
 
     public ngOnInit () : void {
         const platformType: PlatformType =
-            this.storageService.read(UserAnswersContract.SELECTED_PLATFORM_TYPE)
+            this.storageService.read(StorageContract.SELECTED_PLATFORM_TYPE)
             || PLATFORM_TYPES.WEB;
 
         this.questions = this.questionsService.getQuestions(platformType);
 
-        this.answers = this.storageService.read(UserAnswersContract.CURRENT_ANSWERS_SET) || [];
+        this.answers = this.storageService.read(StorageContract.CURRENT_ANSWERS_SET) || [];
 
-        this.currentQuestionIndex = this.answers.length;
+        this.currentQuestionIndex = Math.min(this.answers.length, this.questions.length - 1);
     }
 
     public async answerCurrentQuestion (answerOption: string) : Promise<void> {
@@ -45,11 +45,9 @@ export class QuestionsComponent implements OnInit {
 
         this.currentQuestionIndex++;
 
-        this.storageService.save(UserAnswersContract.CURRENT_ANSWERS_SET, this.answers);
+        this.storageService.save(StorageContract.CURRENT_ANSWERS_SET, this.answers);
 
         if (this.currentQuestionIndex >= this.questions.length) {
-            // this.currentQuestionIndex--;
-
             await this.loadingService.displayLoading({
                 displayText: 'Preparing results...',
                 displayTime: 2000
@@ -66,7 +64,7 @@ export class QuestionsComponent implements OnInit {
 
         this.currentQuestionIndex--;
 
-        this.storageService.save(UserAnswersContract.CURRENT_ANSWERS_SET, this.answers);
+        this.storageService.save(StorageContract.CURRENT_ANSWERS_SET, this.answers);
 
         if (this.currentQuestionIndex < 0) {
             // noinspection JSIgnoredPromiseFromCall
@@ -80,6 +78,6 @@ export class QuestionsComponent implements OnInit {
 
         this.currentQuestionIndex = questionIndex;
 
-        this.storageService.save(UserAnswersContract.CURRENT_ANSWERS_SET, this.answers);
+        this.storageService.save(StorageContract.CURRENT_ANSWERS_SET, this.answers);
     }
 }

@@ -1,32 +1,31 @@
 <div class="contact-us-modal"
      id="contact-us-modal" role="dialog" data-backdrop="false">
     <div class="modal-dialog">
-        <div [ngClass]="{'hide-content': !isContentShow}" class="modal-content-container">
+        <div class="modal-content-container" [class.hidden]="currentStage !== STAGES.FORM">
             <div class="title">TELL US MORE ABOUT PROJECT</div>
             <div class="container">
                 <div class="column">
-                    <input
-                        [ngClass]="{'input-error': errors.name}"
-                        type="text" name="name"
-                        id="name" placeholder="Your name"
-                        class="contact-input" required
-                        [(ngModel)]="inputs.name">
-                    <input
-                        [ngClass]="{'input-error': errors.email}"
-                        type="text" name="email"
-                        id="email" placeholder="Your email"
-                        class="contact-input" required
-                        [(ngModel)]="inputs.email">
-                    <textarea
-                        [ngClass]="{'input-error': errors.projectDetails}"
-                        class="contact-input text-area"
-                        rows="4" name="message" id="message"
-                        placeholder="{{placeholder}}" required
-                        [(ngModel)]="inputs.projectDetails"></textarea>
-                    <button type="button" (click)="submitForm()" class="contact-submit" id="contact-submit">
+                    <form [formGroup]="requestForm">
+                        <input [formControl]="requestForm.controls['name']"
+                            type="text" name="name"
+                            id="name" placeholder="Your name"
+                            class="contact-input" required
+                            [class.error]="requestForm.controls['name'].touched && requestForm.controls['name'].invalid">
+                        <input [formControl]="requestForm.controls['email']"
+                            type="text" name="email"
+                            id="email" placeholder="Your email"
+                            class="contact-input" required
+                            [class.error]="requestForm.controls['email'].touched && requestForm.controls['email'].invalid">
+                        <textarea [formControl]="requestForm.controls['projectDetails']"
+                            placeholder="Tell us more about your project"
+                            class="contact-input text-area"
+                            rows="4" name="message" id="message" required
+                            [class.error]="requestForm.controls['projectDetails'].touched && requestForm.controls['projectDetails'].invalid"
+                        ></textarea>
+                    </form>
+                    <button type="button" class="contact-submit" id="contact-submit" (click)="submitForm()">
                         SEND MESSAGE
                     </button>
-
                 </div>
 
                 <div class="column details">
@@ -68,8 +67,9 @@
                 </div>
             </div>
         </div>
-        <div id="particles-container" class="particles-container"></div>
-        <div [ngClass]="{'show-cube': isAnimatedCube}" class="vertical-centered-box sk-cube-grid">
+        <div id="modal-particles" class="particles-container"></div>
+
+        <div [class.hidden]="currentStage !== STAGES.LOADING" class="vertical-centered-box sk-cube-grid">
             <div class="content">
                 <div class="loader-circle"></div>
                 <div class="loader-line-mask">
@@ -79,9 +79,9 @@
             </div>
         </div>
 
-        <div [ngClass]="{'show-message': isMessageShow}" class="thanks-container">
-            <span class="thanks-text">Thank you! Your request is being processed. Check inbox to get useful clients guide.</span>
-        </div>
+        <!--<div [ngClass]="{'show-message': isMessageShow}" class="thanks-container">-->
+            <!--<span class="thanks-text">Thank you! Your request is being processed. Check inbox to get useful clients guide.</span>-->
+        <!--</div>-->
 
         <div class="close-modal">
             <i class="fa fa-close" (click)="bsModalRef.hide()"></i>

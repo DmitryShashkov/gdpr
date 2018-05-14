@@ -6,7 +6,7 @@ import {PLATFORM_TYPES} from "../../../app.constants";
 import {DisplayLoadingDTO} from "../../../services/services.dto";
 import {LoadingService} from "../../../services/loading.service";
 import {StorageService} from "../../../services/storage.service";
-import {UserAnswersContract} from "../../../contracts/user-answers.contract";
+import {StorageContract} from "../../../contracts/storage.contract";
 
 @Component({
     selector: 'choose-platform',
@@ -23,7 +23,7 @@ export class ChoosePlatformComponent {
     ) { }
 
     public async choosePlatform (platformType: PlatformType) : Promise<boolean> {
-        this.storageService.save(UserAnswersContract.SELECTED_PLATFORM_TYPE, platformType);
+        this.storageService.save(StorageContract.SELECTED_PLATFORM_TYPE, platformType);
 
         const loadingDTO: DisplayLoadingDTO = {
             displayTime: 2000,

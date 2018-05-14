@@ -2,14 +2,15 @@ import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {HeaderComponent} from "./header/header.component";
 import {QuoteModalComponent} from "./quote-modal/quote-modal.component";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ProgressBarComponent} from "./progress-bar/progress-bar.component";
 import {LoadingComponent} from "./loading/loading.component";
 
 @NgModule({
     imports: [
         CommonModule,
-        FormsModule
+        FormsModule,
+        ReactiveFormsModule
     ],
     declarations: [
         HeaderComponent,
