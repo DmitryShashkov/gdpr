@@ -1,6 +1,29 @@
 <!--suppress JSIgnoredPromiseFromCall -->
 <div class="choose-platform">
-    Choose your platform
-    <button (click)="choosePlatform(PLATFORM_TYPES.WEB)">Web</button>
-    <button (click)="choosePlatform(PLATFORM_TYPES.MOBILE)">Mobile</button>
+    <div class="block-title">
+        GDPR Compliance Checklist
+    </div>
+    <div class="block-description">
+        Get Ready for General Data Protection Regulation
+    </div>
+
+    <div class="options">
+        <div class="option mobile" (click)="choosePlatform(PLATFORM_TYPES.MOBILE)">
+            <div class="bg-circle">
+                <div class="bg-image"></div>
+            </div>
+            <div class="option-title">
+                For Mobile
+            </div>
+        </div>
+        <div class="delimiter">or</div>
+        <div class="option web" (click)="choosePlatform(PLATFORM_TYPES.WEB)">
+            <div class="bg-circle">
+                <div class="bg-image"></div>
+            </div>
+            <div class="option-title">
+                For Web
+            </div>
+        </div>
+    </div>
 </div>

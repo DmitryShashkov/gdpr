@@ -1,0 +1,104 @@
+.results {
+    height: 552px;
+    padding: 20px 20px 20px 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    .controls-panel {
+        height: 41px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+
+        .back-button {
+            font-size: 13px;
+            color: #cccccc;
+            padding: 2px 7px 2px 20px;
+            position: relative;
+            background-color: transparent;
+
+            &:before {
+                display: block;
+                content: ' ';
+                border: solid #cccccc;
+                border-width: 2px 0 0 2px;
+                position: absolute;
+                width: 5px;
+                height: 5px;
+                transform: rotate(-45deg);
+                top: 8px;
+                left: 3px;
+            }
+        }
+    }
+
+    .columns {
+        height: calc(100% - 55px);
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+
+        .column-info {
+            width: 74%;
+
+            .badge-panel {
+                border-radius: 6px;
+                box-shadow: 0 2px 5px 0 #0000000d;
+                height: 135px;
+                background-color: #cf2a27;
+                color: #fff;
+                display: flex;
+
+                .index-part {
+                    width: 33%;
+                    border-right: 1px solid;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+
+                    .block-label {
+                        font-size: 24px;
+                        line-height: 1;
+                    }
+
+                    .index {
+                        font-size: 48px;
+                        line-height: 1.2;
+                        font-weight: 600;
+                        letter-spacing: 0.05em;
+                    }
+                }
+
+                .conclusion-part {
+                    width: 66%;
+
+                    .conclusion-holder {
+                        height: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: flex-start;
+                        justify-content: center;
+                        padding: 0 25px;
+
+                        .conclusion-title {
+                            font-size: 24px;
+                            line-height: 1.2;
+                        }
+
+                        .conclusion-description {
+                            font-size: 18px;
+                        }
+                    }
+                }
+            }
+        }
+
+        .column-actions {
+            width: 25%;
+        }
+    }
+}

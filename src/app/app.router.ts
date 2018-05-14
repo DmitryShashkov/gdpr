@@ -3,6 +3,7 @@ import {ChoosePlatformComponent} from "./components/features/choose-platform/cho
 import {QuestionsComponent} from "./components/features/questions/questions.component";
 import {RoutingContract} from "./contracts/routing.contract";
 import {ResultsComponent} from "./components/features/results/results.component";
+import {ResultsResolver} from "./resolvers/results.resolver";
 
 export const APP_ROUTES: Routes = [
     {
@@ -15,6 +16,9 @@ export const APP_ROUTES: Routes = [
     },
     {
         path: RoutingContract.RESULTS,
-        component: ResultsComponent
+        component: ResultsComponent,
+        resolve: {
+            answers: ResultsResolver
+        }
     }
 ];

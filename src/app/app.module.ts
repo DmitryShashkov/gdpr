@@ -14,6 +14,7 @@ import {MatRippleModule} from "@angular/material";
 import {DisplayGDPRComponent} from "./components/features/display-gdpr/display-gdpr.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ResultsComponent} from "./components/features/results/results.component";
+import {ResultsResolver} from "./resolvers/results.resolver";
 
 const transitionParams : { appId: string } = { appId: 'my-app' };
 
@@ -39,7 +40,8 @@ const transitionParams : { appId: string } = { appId: 'my-app' };
         RouterModule.forRoot(APP_ROUTES)
     ],
     providers: [
-        BsModalService
+        BsModalService,
+        ResultsResolver
     ],
     bootstrap: [
         AppComponent

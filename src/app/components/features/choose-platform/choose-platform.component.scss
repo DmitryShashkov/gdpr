@@ -1,0 +1,131 @@
+$mobileBgColor: #2196f2;
+$mobileCircleColor: #ffafa2;
+$webBgColor: #3f51b5;
+$webCircleColor: #79d1e0;
+
+$hoverDuration: 0.5s;
+$darkenAmount: 10%;
+
+.choose-platform {
+    padding-top: 35px;
+
+    .block-title {
+        font-size: 28px;
+        color: #808080;
+        text-align: center;
+        line-height: 34px;
+        font-weight: 300;
+    }
+
+    .block-description {
+        margin-bottom: 27px;
+        text-align: center;
+        color: #808080;
+        font-size: 16px;
+        font-weight: 300;
+    }
+
+    .options {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .option {
+            height: 402px;
+            width: 507px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px 0 #0000000d;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: background-color $hoverDuration;
+
+            &.mobile {
+                background-color: $mobileBgColor;
+
+                .bg-circle {
+                    background-color: $mobileCircleColor;
+                }
+
+                .bg-image {
+                    background-image: url("/assets/images/category-mobile.png");
+                    height: 420px;
+                    width: 373px;
+                    top: 51px;
+                    left: 46px;
+                }
+
+                &:hover {
+                    background-color: darken($mobileBgColor, $darkenAmount);
+
+                    .bg-circle {
+                        background-color: darken($mobileCircleColor, $darkenAmount);
+                    }
+                }
+            }
+
+            &.web {
+                background-color: $webBgColor;
+
+                .bg-circle {
+                    background-color: $webCircleColor;
+                }
+
+                .bg-image {
+                    background-image: url("/assets/images/category-web.png");
+                    height: 473px;
+                    width: 422px;
+                    top: 37px;
+                    left: -7px;
+                }
+
+                &:hover {
+                    background-color: darken($webBgColor, $darkenAmount);
+
+                    .bg-circle {
+                        background-color: darken($webCircleColor, $darkenAmount);
+                    }
+                }
+            }
+
+            .bg-circle {
+                position: absolute;
+                width: 520px;
+                height: 520px;
+                border-radius: 50%;
+                top: -52px;
+                right: -182px;
+                transition: transform $hoverDuration, background-color $hoverDuration;
+            }
+
+            .bg-image {
+                background-size: contain;
+                position: absolute;
+            }
+
+            .option-title {
+                font-size: 32px;
+                font-weight: 600;
+                line-height: 1;
+                position: absolute;
+                top: 27px;
+                left: 27px;
+                text-transform: uppercase;
+            }
+
+            &:hover {
+                .bg-circle {
+                    transform: scale(1.1);
+                }
+            }
+        }
+
+        .delimiter {
+            font-size: 14px;
+            color: #808080;
+            width: 26px;
+            text-align: center;
+        }
+    }
+}

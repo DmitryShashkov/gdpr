@@ -1,1 +1,51 @@
-results be here
+<div class="results">
+    <div class="controls-panel">
+        <button class="back-button">
+            Back
+        </button>
+    </div>
+    <div class="columns">
+        <div class="column-info">
+            <div class="badge-panel">
+                <div class="index-part">
+                    <div class="block-label">GDPR index</div>
+                    <div class="index">
+                        {{ yourRating }}/{{ maxRating }}
+                    </div>
+                </div>
+                <div class="conclusion-part" [ngSwitch]="yourResolution">
+                    <div *ngSwitchCase="RESOLUTIONS.POOR" class="conclusion-holder">
+                        <div class="conclusion-title">
+                            Caution! Your app is not GDPR compliant.
+                        </div>
+                        <div class="conclusion-description">
+                            Make sure you follow all the requirements listed below.
+                        </div>
+                    </div>
+                    <div *ngSwitchCase="RESOLUTIONS.ACCEPTABLE" class="conclusion-holder">
+                        <div class="conclusion-title">
+                            You need to make a few changes to get your app GDPR compliant.
+                        </div>
+                        <div class="conclusion-description">
+                            Find a list of requirements to consider below.
+                        </div>
+                    </div>
+                    <div *ngSwitchCase="RESOLUTIONS.DECENT" class="conclusion-holder">
+                        <div class="conclusion-title">
+                            Great job!
+                        </div>
+                        <div class="conclusion-description">
+                            Your app fully meets GDPR requirements.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="recommendations">
+                <div class="recommend-entry" *ngFor="let recommendation of recommendations">
+                    {{ recommendation }}
+                </div>
+            </div>
+        </div>
+        <div class="column-actions"></div>
+    </div>
+</div>
