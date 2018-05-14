@@ -7,7 +7,7 @@ export class ResultsResolver implements Resolve<string[]> {
 
     public async resolve (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) : Promise<string[]> {
         return new Promise<string[]>((resolve) => {
-            return resolve(['yes','yes','yes','yes','yes','yes','yes','no','no','no']);
+            return resolve(['no','no','no','no','no','no','no','no','no','no']);
         });
     }
 }

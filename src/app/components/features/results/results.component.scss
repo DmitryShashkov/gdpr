@@ -42,15 +42,24 @@
         justify-content: space-between;
 
         .column-info {
-            width: 74%;
+            width: 73%;
 
             .badge-panel {
                 border-radius: 6px;
                 box-shadow: 0 2px 5px 0 #0000000d;
                 height: 135px;
-                background-color: #cf2a27;
                 color: #fff;
                 display: flex;
+
+                &.poor {
+                    background-color: #c0394a;
+                }
+                &.acceptable {
+                    background-color: #ffba00;
+                }
+                &.decent {
+                    background-color: #137a63;
+                }
 
                 .index-part {
                     width: 33%;
@@ -95,10 +104,109 @@
                     }
                 }
             }
+
+            .recommendations {
+                width: 100%;
+                height: 250px;
+                position: relative;
+                margin-top: 30px;
+                font-size: 16px;
+                line-height: 1.7;
+
+                .recommend-entry {
+                    display: flex;
+
+                    .entry-number {
+                        margin-right: 10px;
+                    }
+
+                    .entry-content {
+                        padding-right: 10px;
+                    }
+                }
+            }
         }
 
         .column-actions {
             width: 25%;
+
+            .download-pdf {
+                border: 1px solid #ebebeb;
+                border-radius: 6px;
+                padding: 30px 20px 30px;
+                margin-bottom: 16px;
+                text-align: center;
+
+                .pdf-icon {
+                    background-image: url("/assets/images/icons/icon-pdf.png");
+                    height: 64px;
+                    width: 56px;
+                    background-size: contain;
+                    margin: 0 auto;
+                }
+
+                .block-label {
+                    color: gray;
+                    margin: 20px 0 13px;
+                }
+
+                .download-button {
+                    background-color: #b0b7bd;
+                    font-weight: 600;
+                    font-size: 10px;
+                    color: white;
+                    letter-spacing: 0.13em;
+                    height: 50px;
+                    width: 192px;
+                    border-radius: 4px;
+                    text-transform: uppercase;
+                    position: relative;
+                    transition: background-color 0.3s;
+
+                    &:hover {
+                        background-color: #949ea6;
+                    }
+                }
+            }
+
+            .share {
+                border: 1px solid #ebebeb;
+                border-radius: 6px;
+
+                .block-label {
+                    color: #b3b3b3;
+                    text-align: center;
+                    padding: 14px 0;
+                    font-weight: bold;
+                    border-bottom: 1px solid #ebebeb;
+                }
+
+                .buttons {
+                    display: flex;
+                    font-weight: bold;
+                    font-size: 10px;
+                    color: #b3b3b3;
+                    letter-spacing: 0.13em;
+                    text-transform: uppercase;
+                    height: 37px;
+
+                    .share-button {
+                        width: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+
+                        &:first-child {
+                            border-right: 1px solid #ebebeb;
+                        }
+
+                        .fa {
+                            font-size: 16px;
+                            margin-right: 10px;
+                        }
+                    }
+                }
+            }
         }
     }
 }

@@ -33,10 +33,10 @@ export class ResultsComponent implements OnInit {
 
     public ngOnInit ()  {
         // todo: get this from resolver too
-        this.selectedPlatform = PLATFORM_TYPES.WEB;
+        this.selectedPlatform = PLATFORM_TYPES.WEB as PlatformType;
 
         this.route.data.subscribe((data: { answers: string[] }) => {
-            this.yourRating = data.answers.filter((answer) => answer === COMMON_ANSWERS.YES).length;
+            this.yourRating = data.answers.filter((answer) => answer === COMMON_ANSWERS.YES + '').length;
             this.maxRating = data.answers.length;
 
             const ratingFraction: number = this.yourRating / this.maxRating;
@@ -51,7 +51,7 @@ export class ResultsComponent implements OnInit {
             const questions: Question[] = this.questionsService.getQuestions(this.selectedPlatform);
 
             this.recommendations = questions
-                .filter((question: Question, i: number) => data.answers[i] === COMMON_ANSWERS.NO)
+                .filter((question: Question, i: number) => data.answers[i] === COMMON_ANSWERS.NO + '')
                 .map((question: Question) => question.suggestions)
                 .reduce((previous: string[], current: string[]) => previous.concat(current), []);
         });

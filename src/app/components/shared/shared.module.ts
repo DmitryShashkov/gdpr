@@ -5,6 +5,7 @@ import {QuoteModalComponent} from "./quote-modal/quote-modal.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ProgressBarComponent} from "./progress-bar/progress-bar.component";
 import {LoadingComponent} from "./loading/loading.component";
+import {TransparentBordersComponent} from "./transparent-borders/transparent-borders.component";
 
 @NgModule({
     imports: [
@@ -16,11 +17,13 @@ import {LoadingComponent} from "./loading/loading.component";
         HeaderComponent,
         QuoteModalComponent,
         ProgressBarComponent,
-        LoadingComponent
+        LoadingComponent,
+        TransparentBordersComponent
     ],
     exports: [
         HeaderComponent,
-        ProgressBarComponent
+        ProgressBarComponent,
+        TransparentBordersComponent
     ],
     entryComponents: [
         QuoteModalComponent,

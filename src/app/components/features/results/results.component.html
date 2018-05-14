@@ -6,7 +6,7 @@
     </div>
     <div class="columns">
         <div class="column-info">
-            <div class="badge-panel">
+            <div class="badge-panel" [ngClass]="yourResolution">
                 <div class="index-part">
                     <div class="block-label">GDPR index</div>
                     <div class="index">
@@ -41,11 +41,39 @@
                 </div>
             </div>
             <div class="recommendations">
-                <div class="recommend-entry" *ngFor="let recommendation of recommendations">
-                    {{ recommendation }}
+                <transparent-borders>
+                    <div class="recommendations-list">
+                        <div class="recommend-entry" *ngFor="let recommendation of recommendations; let i = index">
+                            <div class="entry-number">{{ i + 1 }}.</div>
+                            <div class="entry-content">{{ recommendation }}</div>
+                        </div>
+                    </div>
+                </transparent-borders>
+            </div>
+        </div>
+        <div class="column-actions">
+            <div class="download-pdf">
+                <div class="pdf-icon"></div>
+                <div class="block-label">
+                    Download User Stories for your GDPR compliance checklist
+                </div>
+                <button class="download-button" mat-ripple>
+                    Download PDF
+                </button>
+            </div>
+            <div class="share">
+                <div class="block-label">
+                    Share this page
+                </div>
+                <div class="buttons">
+                    <div class="share-button">
+                        <i class="fa fa-twitter" aria-hidden="true"></i> Twitter
+                    </div>
+                    <div class="share-button">
+                        <i class="fa fa-facebook" aria-hidden="true"></i> Facebook
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="column-actions"></div>
     </div>
 </div>
