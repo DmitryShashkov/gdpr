@@ -21,8 +21,8 @@ export class TransparentBordersComponent implements AfterViewInit {
     private contents: ElementRef;
 
     // should we show top and bottom borders?
-    protected showTopBorder: boolean = false;
-    protected showBottomBorder: boolean = true;
+    public showTopBorder: boolean = false;
+    public showBottomBorder: boolean = true;
 
     constructor () { }
 
