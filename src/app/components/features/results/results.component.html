@@ -13,8 +13,9 @@
                         {{ yourRating }}/{{ maxRating }}
                     </div>
                 </div>
-                <div class="conclusion-part" [ngSwitch]="yourResolution">
-                    <div *ngSwitchCase="RESOLUTIONS.POOR" class="conclusion-holder">
+                <div class="conclusion-part">
+                    <div *ngIf="selectedPlatform === PLATFORM_TYPES.MOBILE && yourResolution === RESOLUTIONS.POOR"
+                        class="conclusion-holder">
                         <div class="conclusion-title">
                             Caution! Your app is not GDPR compliant.
                         </div>
@@ -22,7 +23,8 @@
                             Make sure you follow all the requirements listed below.
                         </div>
                     </div>
-                    <div *ngSwitchCase="RESOLUTIONS.ACCEPTABLE" class="conclusion-holder">
+                    <div *ngIf="selectedPlatform === PLATFORM_TYPES.MOBILE && yourResolution === RESOLUTIONS.ACCEPTABLE"
+                        class="conclusion-holder">
                         <div class="conclusion-title">
                             You need to make a few changes to get your app GDPR compliant.
                         </div>
@@ -30,12 +32,40 @@
                             Find a list of requirements to consider below.
                         </div>
                     </div>
-                    <div *ngSwitchCase="RESOLUTIONS.DECENT" class="conclusion-holder">
+                    <div *ngIf="selectedPlatform === PLATFORM_TYPES.MOBILE && yourResolution === RESOLUTIONS.DECENT"
+                        class="conclusion-holder">
                         <div class="conclusion-title">
                             Great job!
                         </div>
                         <div class="conclusion-description">
                             Your app fully meets GDPR requirements.
+                        </div>
+                    </div>
+                    <div *ngIf="selectedPlatform === PLATFORM_TYPES.WEB && yourResolution === RESOLUTIONS.POOR"
+                        class="conclusion-holder">
+                        <div class="conclusion-title">
+                            Caution! Your site is not GDPR compliant.
+                        </div>
+                        <div class="conclusion-description">
+                            Make sure you follow all the requirements listed below.
+                        </div>
+                    </div>
+                    <div *ngIf="selectedPlatform === PLATFORM_TYPES.WEB && yourResolution === RESOLUTIONS.ACCEPTABLE"
+                        class="conclusion-holder">
+                        <div class="conclusion-title">
+                            You need to make a few changes to get your website GDPR compliant.
+                        </div>
+                        <div class="conclusion-description">
+                            Find a list of requirements to consider below.
+                        </div>
+                    </div>
+                    <div *ngIf="selectedPlatform === PLATFORM_TYPES.WEB && yourResolution === RESOLUTIONS.DECENT"
+                        class="conclusion-holder">
+                        <div class="conclusion-title">
+                            Great job!
+                        </div>
+                        <div class="conclusion-description">
+                            Your website fully meets GDPR requirements.
                         </div>
                     </div>
                 </div>
@@ -66,10 +96,10 @@
                     Share this page
                 </div>
                 <div class="buttons">
-                    <div class="share-button">
+                    <a class="share-button" [href]="twitterIntentURL" mat-ripple>
                         <i class="fa fa-twitter" aria-hidden="true"></i> Twitter
-                    </div>
-                    <div class="share-button">
+                    </a>
+                    <div class="share-button" (click)="shareViaFacebook()" mat-ripple>
                         <i class="fa fa-facebook" aria-hidden="true"></i> Facebook
                     </div>
                 </div>

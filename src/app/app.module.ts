@@ -15,6 +15,7 @@ import {DisplayGDPRComponent} from "./components/features/display-gdpr/display-g
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ResultsComponent} from "./components/features/results/results.component";
 import {ResultsResolver} from "./resolvers/results.resolver";
+import {FacebookModule} from "ngx-facebook";
 
 const transitionParams : { appId: string } = { appId: 'my-app' };
 
@@ -34,6 +35,7 @@ const transitionParams : { appId: string } = { appId: 'my-app' };
         MatRippleModule,
         ModalModule.forRoot(),
         BsDropdownModule.forRoot(),
+        FacebookModule.forRoot(),
         BrowserAnimationsModule,
         BrowserModule.withServerTransition(transitionParams),
 

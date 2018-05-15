@@ -5,5 +5,6 @@
 
 export const environment = {
     production: false,
-    apiServerURL: 'https://www.cleveroad.com'
+    apiServerURL: 'https://www.cleveroad.com',
+    fbAppId: '363817377441019'
 };
