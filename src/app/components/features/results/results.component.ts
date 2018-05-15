@@ -1,9 +1,12 @@
 import {Component, OnInit} from "@angular/core";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {COMMON_ANSWERS, PLATFORM_TYPES} from "../../../app.constants";
 import {QuestionsService} from "../../../services/questions.service";
 import {PlatformType, Question} from "../../../app.types";
 import {StorageService} from "../../../services/storage.service";
+import {RoutingContract} from "../../../contracts/routing.contract";
+import {LoadingService} from "../../../services/loading.service";
+import {AnswersSet} from "../../../services/services.dto";
 
 @Component({
     selector: 'results',
@@ -27,17 +30,20 @@ export class ResultsComponent implements OnInit {
 
     constructor (
         private route: ActivatedRoute,
+        private router: Router,
         private questionsService: QuestionsService,
-        private storageService: StorageService
+        private storageService: StorageService,
+        private loadingService: LoadingService
     ) { }
 
     public ngOnInit ()  {
-        // todo: get this from resolver too
-        this.selectedPlatform = PLATFORM_TYPES.WEB as PlatformType;
+        window.requestAnimationFrame(this.loadingService.stopLoading.bind(this.loadingService));
 
-        this.route.data.subscribe((data: { answers: string[] }) => {
-            this.yourRating = data.answers.filter((answer) => answer === COMMON_ANSWERS.YES + '').length;
-            this.maxRating = data.answers.length;
+        this.route.data.subscribe((resolvedData: { answersSet: AnswersSet }) => {
+            this.selectedPlatform = resolvedData.answersSet.platform as PlatformType;
+
+            this.yourRating = resolvedData.answersSet.answers.filter((answer) => answer === COMMON_ANSWERS.YES + '').length;
+            this.maxRating = resolvedData.answersSet.answers.length;
 
             const ratingFraction: number = this.yourRating / this.maxRating;
             if (ratingFraction < 0.4) {
@@ -51,9 +57,14 @@ export class ResultsComponent implements OnInit {
             const questions: Question[] = this.questionsService.getQuestions(this.selectedPlatform);
 
             this.recommendations = questions
-                .filter((question: Question, i: number) => data.answers[i] === COMMON_ANSWERS.NO + '')
+                .filter((question: Question, i: number) => resolvedData.answersSet.answers[i] === COMMON_ANSWERS.NO + '')
                 .map((question: Question) => question.suggestions)
                 .reduce((previous: string[], current: string[]) => previous.concat(current), []);
         });
+    }
+
+    public goBack () : Promise<boolean> {
+        const commands = [`/${RoutingContract.QUESTIONS}`];
+        return this.router.navigate(commands);
     }
 }

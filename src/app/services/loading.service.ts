@@ -38,4 +38,13 @@ export class LoadingService {
             }, displayTime);
         });
     }
+
+    public startLoading (text: string = 'Loading...') : void {
+        this.loadingComponent.instance.loadingText = text;
+        this.loadingComponent.instance.isVisible = true;
+    }
+
+    public stopLoading () : void {
+        this.loadingComponent.instance.isVisible = false;
+    }
 }

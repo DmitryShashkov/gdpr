@@ -7,6 +7,10 @@ import {QuestionsService} from "../../../services/questions.service";
 import {Router} from "@angular/router";
 import {RoutingContract} from "../../../contracts/routing.contract";
 import {LoadingService} from "../../../services/loading.service";
+import {HttpService} from "../../../services/http.service";
+import {Observable} from "rxjs/Observable";
+import {delay} from "rxjs/operators";
+import {AppUtils} from "../../../app.utils";
 
 @Component({
     selector: 'questions',
@@ -14,6 +18,8 @@ import {LoadingService} from "../../../services/loading.service";
     styleUrls: ['./questions.component.scss']
 })
 export class QuestionsComponent implements OnInit {
+    private platformType: PlatformType;
+
     public questions: Question[];
 
     public currentQuestionIndex: number;
@@ -24,19 +30,27 @@ export class QuestionsComponent implements OnInit {
         private router: Router,
         private storageService: StorageService,
         private questionsService: QuestionsService,
-        private loadingService: LoadingService
-    ) {}
+        private loadingService: LoadingService,
+        private httpService: HttpService
+    ) { }
 
     public ngOnInit () : void {
-        const platformType: PlatformType =
+        this.platformType =
             this.storageService.read(StorageContract.SELECTED_PLATFORM_TYPE)
             || PLATFORM_TYPES.WEB;
 
-        this.questions = this.questionsService.getQuestions(platformType);
+        this.questions = this.questionsService.getQuestions(this.platformType);
 
         this.answers = this.storageService.read(StorageContract.CURRENT_ANSWERS_SET) || [];
 
         this.currentQuestionIndex = Math.min(this.answers.length, this.questions.length - 1);
+
+        if (this.currentQuestionIndex < this.answers.length) {
+            this.answers.splice(this.currentQuestionIndex);
+            this.answers = this.answers.slice(0);
+
+            this.storageService.save(StorageContract.CURRENT_ANSWERS_SET, this.answers);
+        }
     }
 
     public async answerCurrentQuestion (answerOption: string) : Promise<void> {
@@ -48,13 +62,14 @@ export class QuestionsComponent implements OnInit {
         this.storageService.save(StorageContract.CURRENT_ANSWERS_SET, this.answers);
 
         if (this.currentQuestionIndex >= this.questions.length) {
-            await this.loadingService.displayLoading({
-                displayText: 'Preparing results...',
-                displayTime: 2000
-            });
+            this.loadingService.startLoading('Preparing results...');
+
+            const resultsLink = await this.httpService.saveAnswers(this.platformType as string, this.answers);
+
+            await AppUtils.sleep(2000);
 
             // noinspection JSIgnoredPromiseFromCall
-            this.router.navigate([`/${RoutingContract.RESULTS}`]);
+            this.router.navigate([`/${RoutingContract.RESULTS}`, resultsLink]);
         }
     }
 

@@ -1,0 +1,21 @@
+<div class="rating-container" *ngIf="rateValue" [ngClass]="{'voted-already': !canVote}">
+    <span class="rate-proposal" *ngIf="canVote">
+        Rate calculator:
+    </span>
+    <star-rating-comp
+        [starType]="'svg'"
+        [rating]="rateValue.rating"
+        [showHalfStars]="true"
+        [hoverEnabled]="true"
+        (onClick)="vote($event)"
+        [readOnly]="!canVote">
+    </star-rating-comp>
+    <span class="vote-values">
+        {{ rateValue.rating.toFixed(2) }} /
+        {{ MAX_RATE }},
+        {{ rateValue.votes }} votes
+    </span>
+    <div class="thanks-message" [ngClass]="{'visible': showMessage}">
+        Thank you. Your voice will be taken into consideration soon!
+    </div>
+</div>

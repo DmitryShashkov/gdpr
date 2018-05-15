@@ -38,7 +38,7 @@ strong {
 }
 
 a {
-    color: inherit;
+    color: inherit !important;
     text-decoration: none;
 
     &:hover, &:focus {
@@ -55,4 +55,23 @@ a {
 .modal-content {
     height: 100%;
     border: 0;
+}
+
+.rating-container .rating {
+    outline: none;
+}
+.rating-container .star-container {
+    cursor: pointer;
+
+    .star {
+        width: 18px;
+        height: 18px;
+
+        svg {
+            fill: #0090FF !important;
+        }
+    }
+}
+.rating-container.voted-already .rating {
+    pointer-events: none;
 }

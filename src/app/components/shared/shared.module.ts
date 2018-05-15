@@ -6,24 +6,34 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ProgressBarComponent} from "./progress-bar/progress-bar.component";
 import {LoadingComponent} from "./loading/loading.component";
 import {TransparentBordersComponent} from "./transparent-borders/transparent-borders.component";
+import {FooterComponent} from "./footer/footer.component";
+import {RateCheckerComponent} from "./rate-checker/rate-checker.component";
+import {StarRatingModule} from "angular-star-rating";
+import {RouterModule} from "@angular/router";
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        StarRatingModule.forRoot(),
+        RouterModule
     ],
     declarations: [
         HeaderComponent,
         QuoteModalComponent,
         ProgressBarComponent,
         LoadingComponent,
-        TransparentBordersComponent
+        TransparentBordersComponent,
+        FooterComponent,
+        RateCheckerComponent
     ],
     exports: [
         HeaderComponent,
         ProgressBarComponent,
-        TransparentBordersComponent
+        TransparentBordersComponent,
+        FooterComponent,
+        RateCheckerComponent
     ],
     entryComponents: [
         QuoteModalComponent,

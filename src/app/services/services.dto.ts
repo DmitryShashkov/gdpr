@@ -17,3 +17,8 @@ export interface CommonResponse {
     status: string;
     payload: any;
 }
+
+export interface AnswersSet {
+    platform: string;
+    answers: string[];
+}

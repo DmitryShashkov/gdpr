@@ -15,10 +15,10 @@ export const APP_ROUTES: Routes = [
         component: QuestionsComponent
     },
     {
-        path: RoutingContract.RESULTS,
+        path: `${RoutingContract.RESULTS}/:${RoutingContract.Params.LINK}`,
         component: ResultsComponent,
         resolve: {
-            answers: ResultsResolver
+            answersSet: ResultsResolver
         }
     }
 ];
