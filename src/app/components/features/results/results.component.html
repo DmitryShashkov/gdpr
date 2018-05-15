@@ -87,9 +87,24 @@
                 <div class="block-label">
                     Download User Stories for your GDPR compliance checklist
                 </div>
-                <button class="download-button" mat-ripple>
+                <button class="download-button" mat-ripple (click)="setUserFormVisible(true)">
                     Download PDF
                 </button>
+                <div class="email-form" [class.visible]="currentFormStage === FORM_STAGES.FORM">
+                    <div class="hide-form"></div>
+                    <div class="pdf-icon"></div>
+                    <form [formGroup]="userForm" class="form-group">
+                        <mat-form-field class="input-entry">
+                            <input [formControl]="userForm.controls['email']" matInput placeholder="Email" />
+                        </mat-form-field>
+                    </form>
+                    <button class="download-button" mat-ripple (click)="sendUserStories()">
+                        Get User Stories
+                    </button>
+                </div>
+                <div class="result" [class.visible]="currentFormStage === FORM_STAGES.RESULT">
+                    Interior Crocodile Alligator, I am a Chevrolet Movie Theatre
+                </div>
             </div>
             <div class="share">
                 <div class="block-label">

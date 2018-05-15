@@ -136,6 +136,7 @@
                 padding: 30px 20px 30px;
                 margin-bottom: 16px;
                 text-align: center;
+                position: relative;
 
                 .pdf-icon {
                     background-image: url("/assets/images/icons/icon-pdf.png");
@@ -146,7 +147,7 @@
                 }
 
                 .block-label {
-                    color: gray;
+                    color: #808080;
                     margin: 20px 0 13px;
                 }
 
@@ -166,6 +167,40 @@
                     &:hover {
                         background-color: #949ea6;
                     }
+                }
+
+                .email-form, .result {
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    padding: 30px 20px 30px;
+                    opacity: 0;
+                    transition: opacity 0.5s;
+                    pointer-events: none;
+                    background-color: #fff;
+
+                    &.visible {
+                        opacity: 1;
+                        pointer-events: all;
+                    }
+
+                    .form-group {
+                        height: 75px;
+                        margin-bottom: 0;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 16px;
+                    }
+                }
+
+                .result {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: #808080;
                 }
             }
 

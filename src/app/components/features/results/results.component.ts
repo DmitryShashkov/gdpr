@@ -1,15 +1,15 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
-import {COMMON_ANSWERS, PLATFORM_TYPES, RESOLUTIONS} from "../../../app.constants";
+import {COMMON_ANSWERS, PLATFORM_TYPES, RESOLUTIONS, FORM_STAGES} from "../../../app.constants";
 import {QuestionsService} from "../../../services/questions.service";
 import {PlatformType, Question} from "../../../app.types";
-import {StorageService} from "../../../services/storage.service";
 import {RoutingContract} from "../../../contracts/routing.contract";
 import {LoadingService} from "../../../services/loading.service";
 import {AnswersSet} from "../../../services/services.dto";
 import {FacebookService, UIParams} from "ngx-facebook";
 import {environment} from "../../../../environments/environment";
 import {AppUtils} from "../../../app.utils";
+import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
     selector: 'results',
@@ -34,18 +34,28 @@ export class ResultsComponent implements OnInit {
         via: 'cleveroad'
     });
 
+    public userForm: FormGroup;
+
+    public readonly FORM_STAGES: typeof FORM_STAGES = FORM_STAGES;
+    public currentFormStage: string = this.FORM_STAGES.PRE_FORM;
+
     constructor (
         private route: ActivatedRoute,
         private router: Router,
         private questionsService: QuestionsService,
         private loadingService: LoadingService,
-        private facebookService: FacebookService
+        private facebookService: FacebookService,
+        private fb: FormBuilder
     ) {
         this.facebookService.init({
             appId: environment.fbAppId,
             xfbml: true,
             version: 'v2.10'
         });
+
+        this.userForm = this.fb.group({
+            email: [ '', [ Validators.email ] ]
+        })
     }
 
     public ngOnInit ()  {
@@ -89,5 +99,28 @@ export class ResultsComponent implements OnInit {
 
         this.facebookService.ui(params)
             .then(console.log).catch(console.log);
+    }
+
+    public setUserFormVisible (visible: boolean) {
+        this.currentFormStage = (visible)
+            ? this.FORM_STAGES.FORM
+            : this.FORM_STAGES.PRE_FORM;
+    }
+
+    public async sendUserStories () {
+        for (let controlName in this.userForm.controls) {
+            const control: AbstractControl = this.userForm.controls[controlName];
+            control.markAsTouched();
+        }
+
+        if (this.userForm.invalid) { return; }
+
+        console.log(this.userForm.value);
+
+        this.currentFormStage = this.FORM_STAGES.RESULT;
+
+        await AppUtils.sleep(2000);
+
+        this.currentFormStage = this.FORM_STAGES.PRE_FORM;
     }
 }

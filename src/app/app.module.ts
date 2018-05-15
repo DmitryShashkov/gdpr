@@ -10,12 +10,13 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import {QuestionsComponent} from "./components/features/questions/questions.component";
 import {ServicesModule} from "./services/services.module";
 import {DirectivesModule} from "./directives/directives.module";
-import {MatRippleModule} from "@angular/material";
+import {MatRippleModule, MatInputModule} from "@angular/material";
 import {DisplayGDPRComponent} from "./components/features/display-gdpr/display-gdpr.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ResultsComponent} from "./components/features/results/results.component";
 import {ResultsResolver} from "./resolvers/results.resolver";
 import {FacebookModule} from "ngx-facebook";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 const transitionParams : { appId: string } = { appId: 'my-app' };
 
@@ -31,8 +32,11 @@ const transitionParams : { appId: string } = { appId: 'my-app' };
         SharedModule,
         ServicesModule,
         DirectivesModule,
+        FormsModule,
+        ReactiveFormsModule,
 
         MatRippleModule,
+        MatInputModule,
         ModalModule.forRoot(),
         BsDropdownModule.forRoot(),
         FacebookModule.forRoot(),

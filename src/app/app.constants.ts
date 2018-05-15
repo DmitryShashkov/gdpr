@@ -13,3 +13,10 @@ export enum RESOLUTIONS {
     ACCEPTABLE = 'acceptable',
     POOR = 'poor'
 }
+
+export enum FORM_STAGES {
+    PRE_FORM = 'pre-form',
+    FORM = 'form',
+    LOADING = 'loading',
+    RESULT = 'result'
+}
